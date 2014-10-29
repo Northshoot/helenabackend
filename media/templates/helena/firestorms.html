@@ -1,0 +1,66 @@
+{% extends "base1.html" %}
+{% block scripts %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script> 
+    <!-- tablesorter widget file - loaded after the plugin -->
+<script src="{{ STATIC_URL }}js/jquery.tablesorter.widgets.js"></script>
+
+<script>
+$(function() {
+  // call the tablesorter plugin
+  $("#template_list").tablesorter({
+    theme: 'blue',
+    // use save sort widget
+    widgets: ["saveSort", "zebra", "resizable","filter"],
+          widgetOptions: {
+      resizable : true,
+    filter_defaultAttrib : 'data-value'
+    }
+
+  });
+    
+  $('button').click(function(){
+    $('#template_list')
+      .trigger('saveSortReset') // clear saved sort
+      .trigger("sortReset");    // reset current table sort
+    return false;
+  });
+
+});
+</script>
+
+{% endblock %}
+{% block css %}
+<link rel='stylesheet' type='text/css' href='{{ STATIC_URL }}css/tablesorter/theme.blue.css'>
+
+{% endblock %}
+{% block section_title %}Listing of Firestorms{% endblock %} 
+{% block content %}
+
+<table id="template_list" class="tablesorter" style="width:auto"> 
+<thead> 
+<tr> 
+    <th>MAC</th> 
+    <th>Decsription</th> 
+    <th>Observations</th> 
+    <th>Last Seen</th> 
+
+</tr> 
+
+</thead>
+  <tbody>
+     
+    {%for o in firestors%}
+       <tr>
+    <td>{{ o.name }}</td> 
+     <td> {{ o.description}}
+    <td>{{ o.user.company }}</td>  
+    
+ </tr>
+{%endfor%}
+         
+</tbody> 
+</table> 
+{{ o }}
+{% if template_list %}
+{% endif %}
+{% endblock %}

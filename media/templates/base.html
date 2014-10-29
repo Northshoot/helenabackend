@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+    <script src='{{ STATIC_URL }}js/jquery-2.1.0.js' type="text/javascript"></script>
+    <script src='{{ STATIC_URL }}js/jquery-ui-1.10.4.custom.js' type="text/javascript"></script>
+    {% block scripts %}
+    {% endblock %}
+    
+        <link rel='stylesheet' type='text/css' href='{{ STATIC_URL }}css/redmond/jquery-ui-1.10.4.custom.css'>
+    
+        {% block css %}
+    {% endblock %}
+    <style>
+        .ui-menu {
+            overflow: hidden;
+            background:white;
+        }
+        .ui-menu .ui-menu {
+            overflow: visible !important;
+        }
+        .ui-menu > li {
+            float: left;
+            display: block;
+            width: auto !important;
+        }
+        .ui-menu ul li {
+            display: block;
+            float: none;
+        }
+        .ui-menu ul li ul {
+            left: 120px !important;
+            width: 100%;
+        }
+        .ui-menu ul li ul li {
+            width: auto;
+        }
+        .ui-menu ul li ul li a {
+            float: left;
+        }
+        .ui-menu > li {
+            margin: 5px 5px !important;
+            padding: 0 0 !important;
+        }
+        .ui-menu > li > a {
+            float: left;
+            display: block;
+            clear: both;
+            overflow: hidden;
+        }
+        .ui-menu .ui-menu-icon {
+            margin-top: 0.3em !important;
+        }
+        .ui-menu .ui-menu .ui-menu li {
+            float: left;
+            display: block;
+        }
+        #nav-container{
+  position:relative;
+  z-index:20;
+}
+#content{
+  position:relative;
+  z-index:10;
+}
+    </style>
+
+</head>
+
+<body>
+<div id="nav-container">
+    <ul id="nav">
+        <li>
+            <a href="#">Test templates</a>
+            <ul>
+                <li>
+                    <a href="/template/new/">New</a>
+                </li>
+                <li>
+                    <a href="/template/list/">List</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Tests</a>
+            <ul>
+                <li>
+                    <a href="#">New</a>
+                </li>
+                <li>
+                    <a href="#">Running</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Certificates</a>
+            <ul>
+                <li>
+                    <a href="/inter/all/">Show table</a>
+                </li>
+                <li>
+                    <a href="#">Show mine</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Status</a>
+        </li>
+        <li>
+            <a href="#">Account</a>
+                        <ul>
+                <li>
+                    <a href="#">Edit</a>
+                </li>
+                <li>
+                    <a href="#">Logout</a>
+                </li>
+            </ul>
+        </li>
+ 
+    </ul>
+    <script>
+        $("#nav").menu({
+            position: {
+                at: "left bottom"
+            }
+        });
+    </script>
+</div>
+    <div id="content">
+    {% block content %} {% endblock %}
+        </div>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+{% extends "base1.html" %}
+{% block scripts %}
+{% endblock %}
+{% block css %}
+{% endblock %}
+{% block section_title %}Analytics of Interoperability{% endblock %}
+{% block content %}
+          <div class="row placeholders" >
+            <div class="col-xs-2 col-sm-5 placeholder">
+              <canvas id="general" height="400" width="400"></canvas>
+              <h4>Complient</h4>
+              <span class="text-muted">Complient partners</span>
+            </div>
+            <div class="col-xs-2 col-sm-5 placeholder">
+              <canvas id="service-vs-complient" height="400" width="400"></canvas>
+              <h4>Services vs Complient</h4>
+              <span class="text-muted">Number of registered services versus number of compient services</span>
+            </div>
+    
+          </div>
+      	<script>
+
+		var pieData = [
+				{
+					value: 30,
+					color:"#F38630"
+				},
+				{
+					value : 50,
+					color : "#E0E4CC"
+				},
+				{
+					value : 100,
+					color : "#69D2E7"
+				}
+			
+			];
+
+	var myPie = new Chart(document.getElementById("general").getContext("2d")).Pie(pieData);
+	
+	</script>
+            
+            	<script>
+
+		var lineChartData = {
+			labels : ["January","February","March","April"],
+			datasets : [
+				{
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					data : [5,12,10,3]
+				},
+				{
+					fillColor : "rgba(151,187,205,0.5)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					data : [5,2,10,1]
+				}
+			]
+			
+		}
+
+	var myLine = new Chart(document.getElementById("service-vs-complient").getContext("2d")).Bar(lineChartData);
+	
+	</script>
+
+{% endblock %}
