@@ -15,7 +15,7 @@ def convertDatetimeToString(o):
 
 class Firestorm(models.Model):
     local_mac = models.CharField(primary_key=True ,max_length=30)
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, null=True, blank=True)
     description  = models.CharField(max_length=300, null=True, blank=True)
     observations = models.IntegerField( default=0,  null=True, blank=True)
     data_points  = models.IntegerField( default=0,  null=True, blank=True)

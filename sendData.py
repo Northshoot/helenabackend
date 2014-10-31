@@ -19,11 +19,11 @@ def addObservation(payload  ):
     text_file.write(r.text)
     
 def addFirestormReading(payload):
-    r = requests.post(base_url+"sensordata/", data=sensor_readings)
+    r = requests.post(base_url+"sensordata/", data=payload)
     text_file = open("out-observation.html", "w")
     text_file.write(r.text)
     print r.text
     
 if __name__ == "__main__":
-    addObservation(observation)
-    addFirestormReading(observation)
+    #addObservation(observation)
+    addFirestormReading(sensor_readings)

@@ -270,10 +270,11 @@ def addObservation(request):
     removed try to easy debug in case of error
     '''
     fire_data = request.POST.copy()
+    l_MAC = fire_data.pop('observer')
     #check if firestorm exist
-    fire, v = Firestorm.objects.get_or_create(local_mac=fire_data.pop('observer'))
+    fire, v = Firestorm.objects.get_or_create(local_mac=l_MAC)
     fire_data['observer']= fire
-    obsr = ObservedDevice.objects.create(observer = fire,
+    obsr = ObservedDevice.objects.create(observer = fire_data['observer'],
                                              observedMAC=fire_data['observedMAC'],
                                             manufactorer=fire_data['manufactorer']  )
     obsr.save()
@@ -286,7 +287,9 @@ def addSensorReading(request):
     removed try to easy debug in case of error
     '''
     sensor_data = request.POST.copy()
-    fire = sensor_data.pop('firestorm')
+    print sensor_data
+    fire = sensor_data.pop('firestorm')[0]
+    print fire
     sensor_data = dict((k,int(v)) for k,v in sensor_data.iteritems())
 
     #check if firestorm exist
