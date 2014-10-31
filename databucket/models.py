@@ -17,7 +17,8 @@ class Firestorm(models.Model):
     local_mac = models.CharField(primary_key=True ,max_length=30)
     name = models.CharField(max_length=30)
     description  = models.CharField(max_length=300, null=True, blank=True)
-    observation = models.CharField(max_length=30)
+    observations = models.IntegerField( default=0,  null=True, blank=True)
+    data_points  = models.IntegerField( default=0,  null=True, blank=True)
     seen = models.DateTimeField(auto_now=True)
     
     
@@ -25,6 +26,13 @@ class Firestorm(models.Model):
         self.seen = datetime.now()
         super(Firestorm, self).save(*args, **kwargs)
 
+    def sensorReading(self):
+        self.data_points+=1
+        self.save()
+        
+    def seenDevice(self):
+        self.observations+=1
+        self.save()    
         
     def __str__(self):
         return "Firestorm %s last seen on %s" %(self.local_mac, str(self.seen.strftime("%Y-%m-%d %H:%M:%S")))
@@ -40,8 +48,12 @@ class FirestormReading(models.Model):
     mag_Z = models.IntegerField( default=0,  null=True, blank=True)
     light=models.IntegerField(default=0,  null=True, blank=True)
 
+    def save(self,*args, **kwargs):
+        self.firestorm.sensorReading()
+        super(FirestormReading, self).save(*args, **kwargs)
+        
     def __str__(self):
-        return "data form %s recorded on %s" %(self.observer.local_mac, str(self.recorded.strftime("%Y-%m-%d %H:%M:%S")))    
+        return "data form %s recorded on %s" %(self.firestorm.local_mac, str(self.recorded.strftime("%Y-%m-%d %H:%M:%S")))    
     
 class ObservedDevice(models.Model):
     observer = models.ForeignKey(Firestorm)
@@ -49,6 +61,14 @@ class ObservedDevice(models.Model):
     manufactorer  = models.CharField(max_length=30)
     seen = models.DateTimeField(auto_now=True)
     
-
+    def save(self,*args, **kwargs):
+        self.observer.seenDevice()
+        super(ObservedDevice, self).save(*args, **kwargs)
+        
     def __str__(self):
         return "device %s observed on %s at %s" %(self.observedMAC, self.observer.local_mac , str(self.seen.strftime("%Y-%m-%d %H:%M:%S")))      
+
+from django.contrib import admin       
+admin.site.register(Firestorm)
+admin.site.register(FirestormReading) 
+admin.site.register(ObservedDevice)

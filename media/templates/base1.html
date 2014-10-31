@@ -12,34 +12,26 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{ STATIC_URL }}css/bootstrap/bootstrap.min.css" rel="stylesheet">
-      <meta name = "viewport" content = "initial-scale = 1, user-scalable = no">
-
+     <meta name = "viewport" content = "initial-scale = 1, user-scalable = no">
     <!-- Custom styles for this template -->
     <link href="{{ STATIC_URL }}css/bootstrap/dashboard.css" rel="stylesheet">
 
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
           <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src='{{ STATIC_URL }}js/jquery-2.1.0.js' type="text/javascript"></script>
+    <script src='{{ STATIC_URL }}js/jquery-2.1.1.js' type="text/javascript"></script>
     <script src='{{ STATIC_URL }}js/jquery-ui-1.10.4.custom.js' type="text/javascript"></script>
     <script src="{{ STATIC_URL }}js/bootstrap/bootstrap.min.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap/docs.min.js"></script>
+    <!-- code to include the highcharts and jQuery libraries goes here -->
+    <script src="{{ STATIC_URL }}js/highcharts/js/highcharts-all.js"></script>
 
+    <!-- load_charts filter takes a comma-separated list of id's where -->
+    <script src="{{ STATIC_URL }}js/bootstrap/docs.min.js"></script>
+    <!-- the charts need to be rendered to                             -->
+    {% load chartit %}
+    
  
-      <script src="{{ STATIC_URL }}js/Chart.min.js"></script>
-		
-		<style>
-			canvas{
-			}
-		</style>
 
           {% block scripts %}
     {% endblock %}
@@ -59,7 +51,7 @@
             <span class="icon-bar">2</span>
             <span class="icon-bar">3</span>
           </button>
-          <a class="navbar-brand" href="/">HynTaaS</a>
+          <a class="navbar-brand" href="/">Helena - Stanford, Berkley, MIT</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -80,10 +72,10 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview</a></li>
+<!--            <li class="active"><a href="#">Overview</a></li>-->
             <li><a href="/firestorm/list/all/">FireStorms</a></li>
             <li><a href="/analytics/">Analytics</a></li>
-            <li><a href="#">Export</a></li>
+<!--            <li><a href="#">Export</a></li>-->
           </ul>
 
 

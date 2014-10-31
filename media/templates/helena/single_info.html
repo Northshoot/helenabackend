@@ -1,0 +1,27 @@
+{% extends "base1.html" %}
+{% block scripts %}
+ {% load chartit %}
+{{ charts|load_charts:"lightCharts,accelerometerCharts, magnetometerCharts" }}
+
+
+
+{% endblock %}
+{% block css %}
+ <script src="{{ STATIC_URL }}js/highcharts/themes/grid-light.js" type="text/javascript"></script>
+{% endblock %}
+{% block section_title %}Displaying {{display_points}} of total {{n_dps}} data points. Device have observer {{n_observ}} peripherals.{% endblock %}
+{% block content %}
+
+
+
+</br>
+<div id='lightCharts'> Chart will be rendered here </div>
+
+</br>
+
+<div id='accelerometerCharts'></div>
+</br>
+
+<div id='magnetometerCharts'></div>
+
+{% endblock %}

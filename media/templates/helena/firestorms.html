@@ -1,5 +1,7 @@
 {% extends "base1.html" %}
 {% block scripts %}
+
+
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tablesorter.js"></script> 
     <!-- tablesorter widget file - loaded after the plugin -->
 <script src="{{ STATIC_URL }}js/jquery.tablesorter.widgets.js"></script>
@@ -40,8 +42,8 @@ $(function() {
 <thead> 
 <tr> 
     <th>MAC</th> 
-    <th>Decsription</th> 
     <th>Observations</th> 
+    <th>Data Points</th> 
     <th>Last Seen</th> 
 
 </tr> 
@@ -49,11 +51,12 @@ $(function() {
 </thead>
   <tbody>
      
-    {%for o in firestors%}
+    {%for o in firestorms%}
        <tr>
-    <td>{{ o.name }}</td> 
-     <td> {{ o.description}}
-    <td>{{ o.user.company }}</td>  
+    <td><a href="/firestorm/list/{{ o.local_mac }}">{{ o.local_mac }}</a></td> 
+    <td>{{ o.observations }}</td>  
+    <td>{{ o.data_points }}</td> 
+    <td> {{ o.seen}}
     
  </tr>
 {%endfor%}

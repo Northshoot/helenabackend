@@ -75,6 +75,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'databucket',
+    'chartit',
+    'simplejson',
+    'autofixture',
 )
 
 MIDDLEWARE_CLASSES = (
