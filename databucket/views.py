@@ -9,7 +9,17 @@ import time
 def home(request):
     return render_to_response('content.html',dict(test="heelloooo"),
                               context_instance=RequestContext(request))
-    
+
+def observations(request, fire_id):
+    fire = None
+    try:
+        fire = Firestorm.objects.get(pk=fire_id)
+        observationlist = ObservedDevice.objects.filter(observer=fire)
+        return render_to_response('observations.html',{'fire_id':fire_id, 'observationlist':observationlist},
+                                  RequestContext(request)) 
+    except Exception:
+        return Http404("No such firestorm with id: %s", fire_id)
+        
 def firestorm(request,  amount):
     fireList = []
     if amount == 'all':
@@ -37,7 +47,8 @@ def firestorm(request,  amount):
         charts_firestorm.append(accelerometerCharts(fire, display_points,data))
         charts_firestorm.append(magnetometerCharts(fire, display_points,data))
         #charts_firestorm.append(manucaftureCharts(fire, display_points, observation))
-        return render_to_response('single_info.html',{'n_dps':n_dps, 
+        return render_to_response('single_info.html',{'fire_id':fire.pk,
+                                                      'n_dps':n_dps, 
                                                       'display_points':display_points,
                                                       'n_observ':n_observ,
                                                       'charts':charts_firestorm},
@@ -270,7 +281,7 @@ def addObservation(request):
     removed try to easy debug in case of error
     '''
     fire_data = request.POST.copy()
-    l_MAC = fire_data.pop('observer')
+    l_MAC = fire_data.pop('observer')[0]
     #check if firestorm exist
     fire, v = Firestorm.objects.get_or_create(local_mac=l_MAC)
     fire_data['observer']= fire

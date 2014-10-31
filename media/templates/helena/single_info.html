@@ -9,7 +9,7 @@
 {% block css %}
  <script src="{{ STATIC_URL }}js/highcharts/themes/grid-light.js" type="text/javascript"></script>
 {% endblock %}
-{% block section_title %}Displaying {{display_points}} of total {{n_dps}} data points. Device have observer {{n_observ}} peripherals.{% endblock %}
+{% block section_title %}Displaying {{display_points}} of total {{n_dps}} data points. Device has observed<a href="/observations/{{fire_id}}/"/> {{n_observ}} peripherals</a>.{% endblock %}
 {% block content %}
 
 
