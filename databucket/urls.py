@@ -15,5 +15,6 @@ urlpatterns = patterns('',
     url(r'^firestorm/add/(?P<action>\w+)/$$', 'databucket.views.firestormAdd', name="firestormAdd"),
     url(r'^observations/(?P<fire_id>\w+)/$$', 'databucket.views.observations', name="observations"),
     url(r'^analytics/$', 'databucket.views.analytics', name="analytics"),
+    url(r'^heat/$', 'databucket.views.heat', name="heat"),
 
 )
