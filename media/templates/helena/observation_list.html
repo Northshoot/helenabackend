@@ -35,14 +35,14 @@ $(function() {
 <link rel='stylesheet' type='text/css' href='{{ STATIC_URL }}css/tablesorter/theme.blue.css'>
 
 {% endblock %}
-{% block section_title %}Listing {{observationList.count}} Seen Squals from total {{total}} {% endblock %} 
+{% block section_title %}Table of {{amount}} Squall observations from total {{total}} {% endblock %} 
 {% block content %}
 
 <table id="template_list" class="tablesorter" style="width:auto"> 
 <thead> 
 <tr> 
-    <th>Firestrorm</th> 
-    <th>Squal</th> 
+    <th>Firestrorm ID</th> 
+    <th>Squall ID</th> 
     <th>Last Seen</th> 
 
 </tr> 

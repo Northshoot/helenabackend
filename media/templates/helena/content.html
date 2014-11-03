@@ -30,8 +30,8 @@ $(function () {
                 enabled: true,
                 alpha: 10,
                 beta: 30,
-                depth: 250,
-                viewDistance: 3,
+                depth: 400,
+                viewDistance: 2,
 
                 frame: {
                     bottom: { size: 1, color: 'rgba(0,0,0,0.02)' },
@@ -41,7 +41,7 @@ $(function () {
             }
         },
         title: {
-            text: ''
+            text: 'Accelerometer data'
         },
         subtitle: {
             text: ''
@@ -118,15 +118,15 @@ $(function () {
 {% block css %}
  		<style type="text/css">
 #container {
-	height: 400px; 
-	min-width: 310px; 
+	height: 600px; 
+	min-width: 400px; 
 	max-width: 800px;
 	margin: 0 auto;
 }
 		</style>
 
 {% endblock %}
-{% block section_title %}Fancy title {% endblock %}
+{% block section_title %}Latest accelerometer values in 3D space.{% endblock %}
 {% block content %}
 
 
